@@ -1,21 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameController : MonoBehaviour
 {
-    private Puzzle currentPuzzle;
-    [SerializeField] private Puzzle[] allPuzzles;
+    public UnityEvent OnGameStart = new UnityEvent();
+    public UnityEvent OnFinalPuzzleCompleted = new UnityEvent();
 
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Puzzle finalPuzzle;
+
+    private void Start()
     {
-        
+        finalPuzzle.OnPuzzleCompleted.AddListener(GameCompleted);
+    }
+    public void StartGame()
+    {
+        //Enable player movement
+        //Start timer
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GameCompleted()
     {
-        
+        OnFinalPuzzleCompleted.Invoke();
+        //save progress
+        //play a cutscene
     }
 }

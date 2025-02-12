@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6692937076572331853
 Transform:
@@ -45,6 +45,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Door_Top
+      objectReference: {fileID: 0}
+    - target: {fileID: 2807733687118223898, guid: b6b360e14b7b2df4cbdb493d78d74240,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3295722629174132896, guid: b6b360e14b7b2df4cbdb493d78d74240,
         type: 3}
