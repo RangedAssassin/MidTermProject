@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RoomPuzzle : Puzzle
 {
+    
     //private IPuzzlePiece[] allPuzzlePieces;
 
     //private void Awake()
