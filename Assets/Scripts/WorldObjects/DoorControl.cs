@@ -57,7 +57,7 @@ public class DoorControl : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //change door colour (Visual Effects)
-        Debug.Log("Trigger Entered");
+  
         if (needsKey == true)
         {
             Debug.Log("Needs a keycard to open!!");

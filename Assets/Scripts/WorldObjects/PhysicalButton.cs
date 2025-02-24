@@ -9,7 +9,7 @@ public class PhysicalButton : MonoBehaviour, IInteractable
     public UnityEvent OnPressed;
     public void StartInteraction()
     {
-        Debug.Log("Pressed Button");
+        //Debug.Log("Pressed Button");
         OnPressed?.Invoke();
     }
 

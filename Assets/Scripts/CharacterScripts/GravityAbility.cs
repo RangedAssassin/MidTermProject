@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class GravityAbility : MonoBehaviour
 {
+    [SerializeField] private float isOnGroundCheckSphereSize = 0.01f;
     [SerializeField] private LayerMask groundLayer;
 
     [SerializeField] private CharacterController controller;
@@ -33,8 +35,7 @@ public class GravityAbility : MonoBehaviour
 
     public bool IsOnGround()
     {
-        return Physics.CheckSphere(transform.position, 0.01f, groundLayer);
-        
+        return Physics.CheckSphere(transform.position, isOnGroundCheckSphereSize, groundLayer);
     }
     public void AddForce(Vector3 force)
     {

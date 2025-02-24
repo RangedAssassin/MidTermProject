@@ -37,11 +37,16 @@ public class PlayerInput : MonoBehaviour
 
     [SerializeField] private float mouseSensitivity;
 
+    [SerializeField] private float checkSphereSize = 0.01f;
 
+    private Transform currentPlatform;
+
+    private Vector3 lastPlatformPosition;
 
 
     void Start()
     {
+        
         //Lambda expression
         GetComponent<HealthSystem>().OnDead += () =>
         {
@@ -67,8 +72,15 @@ public class PlayerInput : MonoBehaviour
             Vector3 moveDir = new Vector3();
             moveDir.x = Input.GetAxis("Horizontal");
             moveDir.z = Input.GetAxis("Vertical");
-            //moveAbilty.Move(new Vector3(moveDir.x, 0,moveDir.y ));
             moveAbilty.Move(moveDir);
+        }
+        // Apply platform movement
+        if (currentPlatform != null)
+        {
+
+            Vector3 platformMovement = currentPlatform.position - lastPlatformPosition;
+            controller.Move(platformMovement * Time.deltaTime);
+            lastPlatformPosition = currentPlatform.position;
         }
 
         if (lookAbilty)
@@ -98,11 +110,24 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+
+        if (hit.collider.CompareTag("MovingPlatform"))
+        {
+            gameObject.transform.parent = hit.transform.parent;
+        }
+        else if (!hit.collider.CompareTag("MovingPlatform"))
+        {
+            gameObject.transform.parent = null;
+        }
+    }
+
     //Testing the sphere location
     private void OnDrawGizmos()
     {
         //Drawing a sphere at the feet of the player
-        Gizmos.DrawSphere(transform.position, 0.01f);
+        Gizmos.DrawSphere(transform.position, checkSphereSize);
     }
 
 }
