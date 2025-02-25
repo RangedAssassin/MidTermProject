@@ -8,6 +8,7 @@ public class TurretAttack : TurretState
     private Transform weaponPoint;
     private Transform turretHead;
     private SphereCollider turretSphereCollider;
+    //private BoxCollider turretBoxCollider;
     private float scanSpeed;
 
     
@@ -21,6 +22,7 @@ public class TurretAttack : TurretState
         weaponPoint = turretController.GetWeaponPoint();
         turretHead = turretController.GetTurretHead();
         turretSphereCollider = turretController.GetTurretSphereCollider();
+        //turretBoxCollider = turretController.GetTurretBoxCollider();
     }
 
     public override void EnterState()
@@ -37,6 +39,7 @@ public class TurretAttack : TurretState
         LookAtTarget();
         ShootPlayer();
 
+
         if (playerInTrigger == false)
         {
             turretController.SwitchState(new TurretIdle(turretController));
@@ -52,7 +55,7 @@ public class TurretAttack : TurretState
 
     public void ShootPlayer()
     {
-        Ray customRay = new Ray(weaponPoint.position, weaponPoint.transform.forward);
+        Ray customRay = new Ray(weaponPoint.position, weaponPoint.forward);
         RaycastHit tempHit;
 
         if (Physics.Raycast(customRay, out tempHit, turretSphereCollider.radius, playerLayer))
@@ -70,6 +73,7 @@ public class TurretAttack : TurretState
         }
         Vector3 startPoint = weaponPoint.position;
         Vector3 endPoint = new Vector3(tempHit.point.x,weaponPoint.position.y,tempHit.point.z);
+
         lineRenderer.SetPosition(0, startPoint);
         lineRenderer.SetPosition(1, endPoint);
     }

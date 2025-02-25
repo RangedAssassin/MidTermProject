@@ -38,6 +38,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float mouseSensitivity;
 
     [SerializeField] private float checkSphereSize = 0.01f;
+    [SerializeField] private float pushForce = 5f;
 
     private Transform currentPlatform;
 
@@ -120,6 +121,26 @@ public class PlayerInput : MonoBehaviour
         else if (!hit.collider.CompareTag("MovingPlatform"))
         {
             gameObject.transform.parent = null;
+        }
+
+        if (hit.collider.CompareTag("PushableBox"))
+        {
+            //Debug.Log("Player hit the box!");
+
+            Rigidbody boxRigidbody = hit.collider.attachedRigidbody;
+            if (boxRigidbody != null)
+            {
+                //Debug.Log("Rigidbody found, applying force...");
+
+                Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z).normalized;
+
+
+                boxRigidbody.AddForce(pushDirection * pushForce, ForceMode.Impulse);
+            }
+            else
+            {
+                Debug.Log("No Rigidbody found on the box!");
+            }
         }
     }
 
