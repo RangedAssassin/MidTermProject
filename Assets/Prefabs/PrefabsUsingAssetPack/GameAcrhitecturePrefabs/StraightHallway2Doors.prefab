@@ -376,8 +376,33 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3759072668663757817, guid: d4ca6330598b7984ca075683684f0872,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1805741383254959745}
   m_SourcePrefab: {fileID: 100100000, guid: d4ca6330598b7984ca075683684f0872, type: 3}
+--- !u!1 &3866761501401527115 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3759072668663757817, guid: d4ca6330598b7984ca075683684f0872,
+    type: 3}
+  m_PrefabInstance: {fileID: 109097622964570290}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1805741383254959745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3866761501401527115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05f84f33519e9ee4aabe77f7839e5d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorButton: {fileID: 0}
+  openOffset: {x: 2.5, y: 0, z: 0}
+  doorSpeed: 4
 --- !u!4 &4705298811385693961 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4669955612368621499, guid: d4ca6330598b7984ca075683684f0872,
@@ -875,8 +900,33 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3759072668663757817, guid: d4ca6330598b7984ca075683684f0872,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7085413217121883169}
   m_SourcePrefab: {fileID: 100100000, guid: d4ca6330598b7984ca075683684f0872, type: 3}
+--- !u!1 &4127986378832459502 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3759072668663757817, guid: d4ca6330598b7984ca075683684f0872,
+    type: 3}
+  m_PrefabInstance: {fileID: 964725870744866071}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7085413217121883169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4127986378832459502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05f84f33519e9ee4aabe77f7839e5d02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorButton: {fileID: 0}
+  openOffset: {x: -2.5, y: 0, z: 0}
+  doorSpeed: 4
 --- !u!4 &5596961628620997292 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4669955612368621499, guid: d4ca6330598b7984ca075683684f0872,

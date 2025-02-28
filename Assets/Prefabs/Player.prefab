@@ -58,7 +58,7 @@ RectTransform:
   m_GameObject: {fileID: 3554889874503489624}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.5}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4209051934967395302}
@@ -130,7 +130,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3931971234926122852}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.62}
+  m_LocalPosition: {x: 0, y: 0, z: 0.37}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -523,10 +523,10 @@ MonoBehaviour:
   shootAbility: {fileID: 2235822579951231247}
   jumpAbility: {fileID: 8490641739644096543}
   interactAbility: {fileID: 2943381065151059661}
-  commandAbility: {fileID: 8847941542734908634}
   controller: {fileID: 1377061922677002758}
   mouseSensitivity: 500
   checkSphereSize: 0.01
+  pushStrength: 10
 --- !u!114 &1506765726369883739
 MonoBehaviour:
   m_ObjectHideFlags: 0

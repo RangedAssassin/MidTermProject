@@ -27,27 +27,29 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private ShootingAbility shootAbility;
     [SerializeField] private JumpAbility jumpAbility;
     [SerializeField] private InteractAbility interactAbility;
-    [SerializeField] private CommanderAbility commandAbility;
+    //[SerializeField] private CommanderAbility commandAbility;
 
     //Directional Inputs
     private Vector2 lookDirection;
 
     //reference to the head/camera GameObject
     [SerializeField] private CharacterController controller;
+    private Vector3 moveDir;
 
     [SerializeField] private float mouseSensitivity;
 
     [SerializeField] private float checkSphereSize = 0.01f;
-    [SerializeField] private float pushForce = 5f;
+    [SerializeField] private float pushStrength = 10f; // Adjustable push force
 
     private Transform currentPlatform;
-
     private Vector3 lastPlatformPosition;
 
 
+    private Vector3 platformVelocity;
+    private Transform platform;
+
     void Start()
     {
-        
         //Lambda expression
         GetComponent<HealthSystem>().OnDead += () =>
         {
@@ -70,17 +72,22 @@ public class PlayerInput : MonoBehaviour
 
         if (moveAbilty != null)
         {
-            Vector3 moveDir = new Vector3();
+            moveDir = new Vector3();
             moveDir.x = Input.GetAxis("Horizontal");
             moveDir.z = Input.GetAxis("Vertical");
             moveAbilty.Move(moveDir);
+
+            // Prevent moving into a blocked box
+            if (IsPushingBlocked(moveDir))
+            {
+                moveDir = Vector3.zero; // Stop movement
+            }
         }
         // Apply platform movement
         if (currentPlatform != null)
         {
-
             Vector3 platformMovement = currentPlatform.position - lastPlatformPosition;
-            controller.Move(platformMovement * Time.deltaTime);
+            controller.Move(platformMovement);
             lastPlatformPosition = currentPlatform.position;
         }
 
@@ -102,46 +109,14 @@ public class PlayerInput : MonoBehaviour
 
         if (interactAbility && Input.GetKeyDown(KeyCode.F))
         {
+            //Debug.Log("F button Pressed");
             interactAbility.Interact();
         }
 
-        if (commandAbility && Input.GetMouseButtonDown(1))
-        {
-            commandAbility.Command();
-        }
-    }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-
-        if (hit.collider.CompareTag("MovingPlatform"))
-        {
-            gameObject.transform.parent = hit.transform.parent;
-        }
-        else if (!hit.collider.CompareTag("MovingPlatform"))
-        {
-            gameObject.transform.parent = null;
-        }
-
-        if (hit.collider.CompareTag("PushableBox"))
-        {
-            //Debug.Log("Player hit the box!");
-
-            Rigidbody boxRigidbody = hit.collider.attachedRigidbody;
-            if (boxRigidbody != null)
-            {
-                //Debug.Log("Rigidbody found, applying force...");
-
-                Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z).normalized;
-
-
-                boxRigidbody.AddForce(pushDirection * pushForce, ForceMode.Impulse);
-            }
-            else
-            {
-                Debug.Log("No Rigidbody found on the box!");
-            }
-        }
+        //if (commandAbility && Input.GetMouseButtonDown(1))
+        //{
+        //    commandAbility.Command();
+        //}
     }
 
     //Testing the sphere location
@@ -151,4 +126,44 @@ public class PlayerInput : MonoBehaviour
         Gizmos.DrawSphere(transform.position, checkSphereSize);
     }
 
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Rigidbody rb = hit.collider.attachedRigidbody;
+
+        if (hit.collider.CompareTag("MovingPlatform"))
+        {
+            platform = hit.collider.transform;
+            platformVelocity = platform.GetComponent<Rigidbody>() ? platform.GetComponent<Rigidbody>().velocity : Vector3.zero;
+        }
+        else
+        {
+            platform = null;
+            platformVelocity = Vector3.zero;
+        }
+
+        // Ensure object has Rigidbody and isn't kinematic
+        if (rb != null && !rb.isKinematic)
+        {
+            Vector3 pushDirection = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z); // Ignore Y-axis
+            rb.velocity = pushDirection * pushStrength;
+        }
+    }
+    public Vector3 GetMoveDirection()
+    {
+        return moveDir; // Adjust based on your input system
+    }
+
+    // Check if the player is trying to push into a blocked box
+    private bool IsPushingBlocked(Vector3 moveDirection)
+    {
+        float checkDistance = 0.2f; // Adjust as needed
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, moveDirection, out hit, checkDistance))
+        {
+            return hit.collider != null && hit.collider.CompareTag("PushableBox");
+        }
+
+        return false;
+    }
 }
