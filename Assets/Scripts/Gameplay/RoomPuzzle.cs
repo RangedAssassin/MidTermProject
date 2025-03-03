@@ -4,18 +4,6 @@ using UnityEngine;
 
 public class RoomPuzzle : Puzzle
 {
-    
-    //private IPuzzlePiece[] allPuzzlePieces;
-
-    //private void Awake()
-    //{
-    //    allPuzzlePieces = GetComponentsInChildren<IPuzzlePiece>();
-
-    //    foreach (IPuzzlePiece piece in allPuzzlePieces) 
-    //    {
-    //        piece.LinkToPuzzle(this);
-    //    }
-    //}
 
     private void Update()
     {
@@ -37,20 +25,4 @@ public class RoomPuzzle : Puzzle
         }
         return true;
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        isPuzzleActive = true;
-    //    }
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        isPuzzleActive = false;
-    //    }
-    //}
 }

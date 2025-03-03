@@ -63,12 +63,12 @@ public class TurretAttack : TurretState
 
             if (tempHit.collider.CompareTag("Player"))
             {
-                Debug.Log("Damaging the player");
-                //playerHealth.DecreaseHealth(1f);
+                //Debug.Log("Damaging the player");
+                playerHealth.DecreaseHealth(1f);
             }
             else
             {
-                Debug.Log("Target is being shielded!!");
+                //Debug.Log("Target is being shielded!!");
             }
         }
         Vector3 startPoint = weaponPoint.position;

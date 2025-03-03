@@ -7,6 +7,7 @@ public class HealthSystem : MonoBehaviour
 {
     [SerializeField] private float currentHealth;
     [SerializeField] private float maxHealth;
+    [SerializeField] private Canvas deadScreen;
 
     //Observer Pattern(Actions)
     public Action<float> OnLifeChanged;
@@ -16,6 +17,7 @@ public class HealthSystem : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        deadScreen.gameObject.SetActive(false);
     }
 
     public float GetCurrentHealth()
@@ -37,7 +39,9 @@ public class HealthSystem : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         if (currentHealth <= 0)
         {
+        
             OnDead?.Invoke();
+            deadScreen.gameObject.SetActive(true);
         }
     }
 

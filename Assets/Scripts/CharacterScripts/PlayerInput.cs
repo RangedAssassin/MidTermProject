@@ -48,23 +48,30 @@ public class PlayerInput : MonoBehaviour
     private Vector3 platformVelocity;
     private Transform platform;
 
+    private float timeToEnableInput = 2f;
+    private float timer = 0;
+
     void Start()
     {
         //Lambda expression
         GetComponent<HealthSystem>().OnDead += () =>
         {
             this.enabled = false;
+            EnableCursor();
         };
         //Lambda expression
 
-        //Controls of mouse cursor
-        Cursor.visible = false; //Visibilty to hidden
-        Cursor.lockState = CursorLockMode.Locked; //Locked To the Center of the screen
+        DisableCursor();
     }
 
 
     void Update()
     {
+        if (timer < timeToEnableInput)
+        {
+            timer += timeToEnableInput;
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             jumpAbility.Jump();
@@ -165,5 +172,17 @@ public class PlayerInput : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void EnableCursor()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+    public void DisableCursor()
+    {
+        //Controls of mouse cursor
+        Cursor.visible = false; //Visibilty to hidden
+        Cursor.lockState = CursorLockMode.Locked; //Locked To the Center of the screen
     }
 }

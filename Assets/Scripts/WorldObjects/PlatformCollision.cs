@@ -11,6 +11,7 @@ public class PlatformCollision : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             platformCollider.enabled = false;
+
         }
     }
 
@@ -19,6 +20,7 @@ public class PlatformCollision : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             platformCollider.enabled = true;
+
         }
     }
 }
