@@ -42,6 +42,7 @@ public class HealthSystem : MonoBehaviour
         
             OnDead?.Invoke();
             deadScreen.gameObject.SetActive(true);
+            
         }
     }
 
