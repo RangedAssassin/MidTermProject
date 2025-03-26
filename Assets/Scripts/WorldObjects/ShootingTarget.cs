@@ -8,6 +8,7 @@ public class ShootingTarget : MonoBehaviour , IPuzzlePiece
     [SerializeField] private Light colorOfLight;
     [SerializeField] private MeshRenderer shadeMaterial;
     [SerializeField] private PlatformMovement platformScript;
+    [SerializeField] private AudioSource audioSource;
 
     public UnityEvent OnTargetHit = new UnityEvent();
 
@@ -16,6 +17,10 @@ public class ShootingTarget : MonoBehaviour , IPuzzlePiece
     {
         if (platformScript != null)
             enablePlatform = platformScript.enabled;
+        if (audioSource != null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -28,6 +33,8 @@ public class ShootingTarget : MonoBehaviour , IPuzzlePiece
         if (other.gameObject.CompareTag("Projectile"))
         {
             OnTargetHit?.Invoke();
+
+            audioSource.Play();
 
             if (platformScript != null)
                 platformScript.enabled = true;

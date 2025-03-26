@@ -8,7 +8,7 @@ public class TurretAttack : TurretState
     private Transform weaponPoint;
     private Transform turretHead;
     private SphereCollider turretSphereCollider;
-    //private BoxCollider turretBoxCollider;
+    private float turretDamage;
     private float scanSpeed;
 
     
@@ -22,7 +22,7 @@ public class TurretAttack : TurretState
         weaponPoint = turretController.GetWeaponPoint();
         turretHead = turretController.GetTurretHead();
         turretSphereCollider = turretController.GetTurretSphereCollider();
-        //turretBoxCollider = turretController.GetTurretBoxCollider();
+        turretDamage = turretController.GetTurretDamage();
     }
 
     public override void EnterState()
@@ -38,7 +38,6 @@ public class TurretAttack : TurretState
     {
         LookAtTarget();
         ShootPlayer();
-
 
         if (playerInTrigger == false)
         {
@@ -64,7 +63,7 @@ public class TurretAttack : TurretState
             if (tempHit.collider.CompareTag("Player"))
             {
                 //Debug.Log("Damaging the player");
-                playerHealth.DecreaseHealth(1f);
+                playerHealth.DecreaseHealth(turretDamage);
             }
             else
             {

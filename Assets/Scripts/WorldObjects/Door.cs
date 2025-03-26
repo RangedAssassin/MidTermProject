@@ -8,15 +8,20 @@ public class Door : MonoBehaviour
     [SerializeField] private PhysicalButton doorButton;
     [SerializeField] private Vector3 openOffset;
     [SerializeField] private float doorSpeed;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private Light lightSource;
     private Vector3 closedPosition;
     private bool isOpen = false;
     // Start is called before the first frame update
     void Start()
     {
         closedPosition = transform.position;
-
+        if (lightSource != null)
+        {
+            lightSource.enabled = false;
+        }
         if (doorButton != null) doorButton.OnPressed.AddListener(OpenDoor);
-
+        audioSource.loop = false;
     }
 
     private void Update()
@@ -35,10 +40,26 @@ public class Door : MonoBehaviour
     public void OpenDoor()
     {
         isOpen = true;
+        if (!audioSource.isPlaying)
+        {
+            SoundManager.SingleTon.PlaySound(audioSource);
+        }
+        if (lightSource != null)
+        { 
+            lightSource.enabled = true;
+        }
     }
 
     public void CloseDoor()
     {
         isOpen = false;
+        if (!audioSource.isPlaying)
+        {
+            SoundManager.SingleTon.PlaySound(audioSource);
+        }
+        if (lightSource != null)
+        {
+            lightSource.enabled = false;
+        }
     }
 }

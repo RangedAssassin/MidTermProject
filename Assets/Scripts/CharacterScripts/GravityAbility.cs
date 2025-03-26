@@ -27,7 +27,7 @@ public class GravityAbility : MonoBehaviour
         {
             currentGravity = 0;
         }
-        
+
         Vector3 gravityVector = new Vector3();
         gravityVector.y = currentGravity;
         controller.Move(gravityVector * Time.deltaTime);
@@ -40,5 +40,11 @@ public class GravityAbility : MonoBehaviour
     public void AddForce(Vector3 force)
     {
         currentGravity = force.y;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, isOnGroundCheckSphereSize);
     }
 }

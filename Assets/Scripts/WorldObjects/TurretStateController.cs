@@ -14,9 +14,11 @@ public class TurretStateController : MonoBehaviour
     [SerializeField] private Transform weaponPoint;
     [SerializeField] private Transform turretHead;
     [SerializeField] private SphereCollider turretSphereCollider;
+    [SerializeField] private AudioSource audioSource;
     //[SerializeField] private BoxCollider turretBoxCollider;
 
-    [Header("Turret Scanning Settings")]
+    [Header("Turret Settings")]
+    [Range(0.1f, 1f)][SerializeField] private float turretDamage = 0.5f;
     [SerializeField] private float scanSpeed = 10f;
     [SerializeField] private float rotationMin = -90f;
     [SerializeField] private float rotationMax = 90f;
@@ -49,6 +51,10 @@ public class TurretStateController : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
+            if (audioSource != null && !audioSource.isPlaying)
+            {
+                SoundManager.SingleTon.PlaySound(audioSource);
+            }
             float playerY = other.transform.position.y;  // Get player's Y position
             float targetY = weaponPoint.transform.position.y;  // Replace with your target Y position
 
@@ -68,6 +74,10 @@ public class TurretStateController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInTrigger = false;
+            if (audioSource != null)
+            { 
+                SoundManager.SingleTon.StopSound(audioSource);
+            }
         }
     }
 
@@ -90,4 +100,5 @@ public class TurretStateController : MonoBehaviour
     public float GetRotationMin() => rotationMin;
     public float GetRotationMax() => rotationMax;
     public bool IsPlayerInTrigger() => playerInTrigger;
+    public float GetTurretDamage() => turretDamage;
 }
