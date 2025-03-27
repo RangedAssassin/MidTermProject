@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -27,7 +23,6 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private ShootingAbility shootAbility;
     [SerializeField] private JumpAbility jumpAbility;
     [SerializeField] private InteractAbility interactAbility;
-    //[SerializeField] private CommanderAbility commandAbility;
 
     //Directional Inputs
     private Vector2 lookDirection;
@@ -41,15 +36,11 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float checkSphereSize = 0.01f;
     [SerializeField] private float pushStrength = 10f; // Adjustable push force
 
-    private Transform currentPlatform;
-    private Vector3 lastPlatformPosition;
-
-
-    private Vector3 platformVelocity;
-    private Transform platform;
-
     private float timeToEnableInput = 2f;
     private float timer = 0;
+
+    private Transform currentPlatform = null;
+    private Vector3 lastPlatformPosition;
 
     void Start()
     {
@@ -89,13 +80,13 @@ public class PlayerInput : MonoBehaviour
             {
                 moveDir = Vector3.zero; // Stop movement
             }
-        }
-        // Apply platform movement
-        if (currentPlatform != null)
-        {
-            Vector3 platformMovement = currentPlatform.position - lastPlatformPosition;
-            controller.Move(platformMovement);
-            lastPlatformPosition = currentPlatform.position;
+
+            if (currentPlatform != null)
+            {
+                Vector3 platformDelta = currentPlatform.position - lastPlatformPosition;
+                transform.position += platformDelta; // Move player with platform
+                lastPlatformPosition = currentPlatform.position; // Update position
+            }
         }
 
         if (lookAbilty)
@@ -120,10 +111,6 @@ public class PlayerInput : MonoBehaviour
             interactAbility.Interact();
         }
 
-        //if (commandAbility && Input.GetMouseButtonDown(1))
-        //{
-        //    commandAbility.Command();
-        //}
     }
 
     //Testing the sphere location
@@ -136,17 +123,6 @@ public class PlayerInput : MonoBehaviour
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody rb = hit.collider.attachedRigidbody;
-
-        if (hit.collider.CompareTag("MovingPlatform"))
-        {
-            platform = hit.collider.transform;
-            platformVelocity = platform.GetComponent<Rigidbody>() ? platform.GetComponent<Rigidbody>().velocity : Vector3.zero;
-        }
-        else
-        {
-            platform = null;
-            platformVelocity = Vector3.zero;
-        }
 
         // Ensure object has Rigidbody and isn't kinematic
         if (rb != null && !rb.isKinematic)
@@ -184,5 +160,22 @@ public class PlayerInput : MonoBehaviour
         //Controls of mouse cursor
         Cursor.visible = false; //Visibilty to hidden
         Cursor.lockState = CursorLockMode.Locked; //Locked To the Center of the screen
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("MovingPlatform"))
+        {
+            currentPlatform = other.transform;
+            lastPlatformPosition = currentPlatform.position; // Store initial position
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("MovingPlatform") && currentPlatform == other.transform)
+        {
+            currentPlatform = null;
+        }
     }
 }

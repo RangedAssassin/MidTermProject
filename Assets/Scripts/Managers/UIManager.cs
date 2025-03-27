@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
 
     void UpdateHealthText(float healthToDisplay)
     {
-        healthText.text = "Health: " + healthToDisplay.ToString();
+        int roundedHealth = Mathf.RoundToInt(healthToDisplay);
+
+        healthText.text = "Health: " + roundedHealth.ToString();
     }
 }

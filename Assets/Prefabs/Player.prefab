@@ -58,7 +58,7 @@ RectTransform:
   m_GameObject: {fileID: 3554889874503489624}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4209051934967395302}
@@ -130,7 +130,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3931971234926122852}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.37}
+  m_LocalPosition: {x: 0, y: 0, z: 0.75}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -140,7 +140,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.01, y: 0.01}
+  m_SizeDelta: {x: 0.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1085402526554390825
 Canvas:
@@ -514,6 +514,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2649920716765566482}
+  - component: {fileID: -1419085736073931303}
   - component: {fileID: 1377061922677002758}
   - component: {fileID: 3205768350182675143}
   - component: {fileID: 2003629176307418437}
@@ -526,6 +527,7 @@ GameObject:
   - component: {fileID: 3159633444578511913}
   - component: {fileID: 1170983263272867246}
   - component: {fileID: 8847941542734908634}
+  - component: {fileID: 6191370797157602381}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -550,6 +552,27 @@ Transform:
   - {fileID: 7047667125829138367}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &-1419085736073931303
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5154698684156645022}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!143 &1377061922677002758
 CharacterController:
   m_ObjectHideFlags: 0
@@ -572,10 +595,10 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 1
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 1.18, z: 0}
 --- !u!54 &3205768350182675143
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -599,7 +622,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 0
@@ -621,9 +644,9 @@ MonoBehaviour:
   jumpAbility: {fileID: 8490641739644096543}
   interactAbility: {fileID: 2943381065151059661}
   controller: {fileID: 1377061922677002758}
-  mouseSensitivity: 500
+  mouseSensitivity: 400
   checkSphereSize: 0.01
-  pushStrength: 10
+  pushStrength: 2
 --- !u!114 &1506765726369883739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,7 +659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd3ac34f764b0174c9ef6e347bd178a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
+  movementSpeed: 5
   controller: {fileID: 1377061922677002758}
 --- !u!114 &2975558375420715913
 MonoBehaviour:
@@ -663,7 +686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c25151d21c39f489e3a2ec6d105954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponTip: {fileID: 0}
+  weaponTip: {fileID: 7565181594912933500}
   projectilePrefab: {fileID: 5268479393177026402, guid: af4409792ee007846a92bb6584b7f4fb,
     type: 3}
   shootingForce: 300
@@ -681,7 +704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myGravity: {fileID: 3996128691159517175}
-  jumpForce: 5
+  jumpForce: 5.5
 --- !u!114 &3996128691159517175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -697,7 +720,7 @@ MonoBehaviour:
   isOnGroundCheckSphereSize: 0.01
   groundLayer:
     serializedVersion: 2
-    m_Bits: 127
+    m_Bits: 1655
   controller: {fileID: 1377061922677002758}
   gravityAcceleration: -9.81
 --- !u!114 &2943381065151059661
@@ -764,6 +787,51 @@ MonoBehaviour:
   companion: {fileID: 0}
   waypointPrefab: {fileID: 1818971767976964524, guid: 9a77f04aefd818844a850b985fd64a63,
     type: 3}
+--- !u!114 &6191370797157602381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5154698684156645022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 2a5ccc37f421f2741836e475f77ad1e3, type: 2}
+    - {fileID: 11400000, guid: dc5510b18004cbe47b5b462277ef4167, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2003629176307418437}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2003629176307418437}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
 --- !u!1001 &5951830343890271040
 PrefabInstance:
   m_ObjectHideFlags: 0
