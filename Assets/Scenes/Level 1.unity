@@ -12214,7 +12214,7 @@ PrefabInstance:
     - target: {fileID: 278726362644986340, guid: 5c03e921d9c81464c93e814dfcace3f8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.124
+      value: 0.322
       objectReference: {fileID: 0}
     - target: {fileID: 278726362644986340, guid: 5c03e921d9c81464c93e814dfcace3f8,
         type: 3}
@@ -13731,45 +13731,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -1419085736073931303, guid: f8f6358b563ac624290138893fedd7f4,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: -1419085736073931303, guid: f8f6358b563ac624290138893fedd7f4,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: -1419085736073931303, guid: f8f6358b563ac624290138893fedd7f4,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: -1419085736073931303, guid: f8f6358b563ac624290138893fedd7f4,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0.01
-      objectReference: {fileID: 0}
     - target: {fileID: 1170983263272867246, guid: f8f6358b563ac624290138893fedd7f4,
         type: 3}
       propertyPath: deadScreen
       value: 
       objectReference: {fileID: 1035463886}
-    - target: {fileID: 1377061922677002758, guid: f8f6358b563ac624290138893fedd7f4,
+    - target: {fileID: 2003629176307418437, guid: f8f6358b563ac624290138893fedd7f4,
         type: 3}
-      propertyPath: m_Center.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1377061922677002758, guid: f8f6358b563ac624290138893fedd7f4,
-        type: 3}
-      propertyPath: m_SkinWidth
-      value: 0.0001
-      objectReference: {fileID: 0}
-    - target: {fileID: 1377061922677002758, guid: f8f6358b563ac624290138893fedd7f4,
-        type: 3}
-      propertyPath: m_StepOffset
-      value: 1
+      propertyPath: mouseSensitivity
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 2649920716765566482, guid: f8f6358b563ac624290138893fedd7f4,
         type: 3}
@@ -13820,6 +13790,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996128691159517175, guid: f8f6358b563ac624290138893fedd7f4,
+        type: 3}
+      propertyPath: isOnGroundCheckSphereSize
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 5154698684156645022, guid: f8f6358b563ac624290138893fedd7f4,
         type: 3}
